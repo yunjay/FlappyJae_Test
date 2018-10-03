@@ -32,11 +32,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         canRestart = true
         
         // setup physics
-        self.physicsWorld.gravity = CGVector( dx: 0.0, dy: -5.0 )
+        self.physicsWorld.gravity = CGVector( dx: 0.0, dy: -4.2 )
         self.physicsWorld.contactDelegate = self
         
         // setup background color
-        skyColor = SKColor(red: 81.0/255.0, green: 192.0/255.0, blue: 201.0/255.0, alpha: 1.0)
+        skyColor = SKColor(red: 242.0/255.0, green: 105.0/255.0, blue: 158.0/255.0, alpha: 1.0)
         self.backgroundColor = skyColor
         
         moving = SKNode()
@@ -208,7 +208,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         if moving.speed > 0  {
             for _ in touches { // do we need all touches?
                 bird.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-                bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 30))
+                bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 24))
             }
         } else if canRestart {
             self.resetScene()
@@ -241,7 +241,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
                 // Flash background if contact is detected
                 self.removeAction(forKey: "flash")
                 self.run(SKAction.sequence([SKAction.repeat(SKAction.sequence([SKAction.run({
-                    self.backgroundColor = SKColor(red: 1, green: 0, blue: 0, alpha: 1.0)
+                    self.backgroundColor = SKColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 1.0)
                     }),SKAction.wait(forDuration: TimeInterval(0.05)), SKAction.run({
                         self.backgroundColor = self.skyColor
                         }), SKAction.wait(forDuration: TimeInterval(0.05))]), count:4), SKAction.run({
